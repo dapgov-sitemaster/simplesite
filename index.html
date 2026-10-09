@@ -1,0 +1,555 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Lia Navarro</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+  /* Layout: a fixed identity column on the left (who, where, how to reach her),
+     and a reading column on the right that scrolls. Stacks to one column on phones. */
+  :root {
+    --bg: #F1F5F3;
+    --surface: #FFFFFF;
+    --ink: #13231F;
+    --muted: #586A64;
+    --line: #D3DDD8;
+    --accent: #0B6B5D;        /* sea teal: links, active states */
+    --highlight: #F2B531;     /* mango: monogram, status dot */
+    --on-highlight: #1C1503;
+
+    --font-display: "Bricolage Grotesque", "Trebuchet MS", "Segoe UI", sans-serif;
+    --font-body: "Figtree", "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E1816;
+      --surface: #16231F;
+      --ink: #E7EFEB;
+      --muted: #95A8A1;
+      --line: #2A3A35;
+      --accent: #56CDB8;
+      --highlight: #F2B531;
+      --on-highlight: #1C1503;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E1816;
+    --surface: #16231F;
+    --ink: #E7EFEB;
+    --muted: #95A8A1;
+    --line: #2A3A35;
+    --accent: #56CDB8;
+    --highlight: #F2B531;
+    --on-highlight: #1C1503;
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+  h1, h2, h3, p, ul, ol, dl, dd { margin: 0; padding: 0; }
+  ul, ol { list-style: none; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  .page {
+    max-width: 1080px;
+    margin-inline: auto;
+    padding-inline: 24px;
+    padding-block: 56px 40px;
+    display: grid;
+    grid-template-columns: 290px minmax(0, 1fr);
+    gap: 72px;
+    align-items: start;
+  }
+
+  /* ---------- Identity column ---------- */
+  .identity {
+    position: sticky;
+    top: calc(env(safe-area-inset-top, 0px) + 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .monogram {
+    width: 84px;
+    height: 84px;
+    border-radius: 24px 24px 24px 6px;
+    background: var(--highlight);
+    color: var(--on-highlight);
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+  }
+  .identity h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2.6rem;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+  .role { color: var(--muted); font-size: 1.05rem; margin-top: 8px; }
+
+  .facts { display: flex; flex-direction: column; gap: 8px; font-size: 0.95rem; }
+  .facts div { display: flex; gap: 10px; align-items: baseline; }
+  .facts dt {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    width: 62px;
+    flex: none;
+  }
+  .facts dd { font-variant-numeric: tabular-nums; }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    align-self: flex-start;
+    padding: 7px 14px 7px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    font-size: 0.9rem;
+  }
+  .status::before {
+    content: "";
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--highlight);
+    flex: none;
+  }
+
+  .nav { display: flex; flex-direction: column; gap: 2px; border-top: 1px solid var(--line); padding-top: 18px; }
+  .nav a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 5px 0 5px 14px;
+    border-left: 2px solid transparent;
+    font-weight: 500;
+  }
+  .nav a:hover { color: var(--ink); }
+  .nav a[aria-current="true"] { color: var(--ink); border-left-color: var(--accent); }
+
+  .btn {
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .identity .btn { align-self: flex-start; }
+
+  /* ---------- Reading column ---------- */
+  .content { display: flex; flex-direction: column; gap: 64px; min-width: 0; }
+  .content section { display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 32px; }
+  .content h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.55rem;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+  .lede {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 1.3;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+    max-width: 24em;
+  }
+  .prose { display: flex; flex-direction: column; gap: 14px; max-width: 62ch; }
+
+  /* Experience */
+  .timeline { display: flex; flex-direction: column; }
+  .timeline li {
+    display: grid;
+    grid-template-columns: 130px minmax(0, 1fr);
+    gap: 20px;
+    padding-block: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .timeline li:last-child { border-bottom: 1px solid var(--line); }
+  .when {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    padding-top: 4px;
+  }
+  .timeline h3, .project h3 { font-size: 1.08rem; font-weight: 600; line-height: 1.35; }
+  .timeline .org { color: var(--muted); }
+  .timeline p { margin-top: 6px; max-width: 58ch; font-size: 0.98rem; }
+
+  /* Projects */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .chip {
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 5px 14px;
+    cursor: pointer;
+  }
+  .chip:hover { color: var(--ink); border-color: var(--muted); }
+  .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .count { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); margin-left: auto; }
+
+  .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .project {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px 22px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .project p { font-size: 0.96rem; color: var(--muted); line-height: 1.55; }
+  .project .meta {
+    margin-top: auto;
+    padding-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--muted);
+  }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .skills h3 {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .skills li { padding-block: 3px; }
+
+  /* Contact */
+  .contact-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .email {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    padding: 8px 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    user-select: all;
+    overflow-wrap: anywhere;
+  }
+  .links { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 860px) {
+    .page { grid-template-columns: minmax(0, 1fr); gap: 44px; padding-inline: 20px; padding-block: 32px 32px; }
+    .identity { position: static; }
+    .identity h1 { font-size: 2.2rem; }
+    .nav { flex-direction: row; flex-wrap: wrap; gap: 4px 18px; }
+    .nav a { padding: 4px 0; border-left: 0; border-bottom: 2px solid transparent; }
+    .nav a[aria-current="true"] { border-bottom-color: var(--accent); }
+    .content { gap: 48px; }
+    .lede { font-size: 1.35rem; }
+  }
+  @media (max-width: 560px) {
+    .projects, .skills { grid-template-columns: minmax(0, 1fr); }
+    .timeline li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+    .count { margin-left: 0; width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+
+<div class="page">
+
+  <aside class="identity">
+    <div class="monogram" aria-hidden="true">LN</div>
+
+    <div>
+      <h1>Lia Navarro</h1>
+      <p class="role">Front-end developer</p>
+    </div>
+
+    <p class="status">Open to freelance work from November</p>
+
+    <dl class="facts">
+      <div><dt>Based</dt><dd>Quezon City, Philippines</dd></div>
+      <div><dt>Time</dt><dd><span id="local-time">UTC+8</span></dd></div>
+      <div><dt>Speaks</dt><dd>Filipino, English</dd></div>
+    </dl>
+
+    <nav class="nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="btn" id="theme-toggle" type="button">Dark mode</button>
+  </aside>
+
+  <main class="content">
+
+    <section id="about">
+      <p class="lede">I build fast, accessible websites for small teams that need them to work on any phone and any connection.</p>
+      <div class="prose">
+        <p>I have spent seven years writing HTML, CSS and JavaScript for clinics, local shops and community groups around Metro Manila. Most of their visitors are on mid-range Android phones with prepaid data, so I keep pages light and make sure they still work when the signal drops.</p>
+        <p>Outside of client work I mentor at a weekend coding club in Cubao and maintain a small open-source library for Philippine address forms.</p>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <ol class="timeline">
+        <li>
+          <span class="when">2022 – Present</span>
+          <div>
+            <h3>Independent developer</h3>
+            <p>Design and build sites for 14 clients so far, from single-page menus to a booking system for a three-branch dental clinic.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2019 – 2022</span>
+          <div>
+            <h3>Front-end developer <span class="org">· Bayani Health</span></h3>
+            <p>Rebuilt the patient portal and cut its first-load size from 2.1 MB to 380 KB.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2017 – 2019</span>
+          <div>
+            <h3>Junior web developer <span class="org">· Tala Studio</span></h3>
+            <p>Built landing pages and email templates for retail campaigns.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2013 – 2017</span>
+          <div>
+            <h3>BS Computer Science <span class="org">· University of the Philippines Diliman</span></h3>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-filter="client" aria-pressed="false">Client work</button>
+        <button class="chip" type="button" data-filter="open-source" aria-pressed="false">Open source</button>
+        <button class="chip" type="button" data-filter="personal" aria-pressed="false">Personal</button>
+        <span class="count" id="project-count" aria-live="polite"></span>
+      </div>
+      <ul class="projects" id="project-list">
+        <li class="project" data-tag="client">
+          <h3>Ngiti Dental booking</h3>
+          <p>Appointment booking across three branches, with SMS reminders and a form that saves progress offline.</p>
+          <div class="meta"><span>2025</span><span>Client work</span><span>JavaScript</span></div>
+        </li>
+        <li class="project" data-tag="open-source">
+          <h3>ph-address-form</h3>
+          <p>Dependent region, province, city and barangay dropdowns in 9 KB, with no framework required.</p>
+          <div class="meta"><span>2024</span><span>Open source</span><span>JavaScript</span></div>
+        </li>
+        <li class="project" data-tag="client">
+          <h3>Kusina ni Aling Nena</h3>
+          <p>A one-page menu and order form for a family carinderia. Loads in under a second on 3G.</p>
+          <div class="meta"><span>2024</span><span>Client work</span><span>HTML, CSS</span></div>
+        </li>
+        <li class="project" data-tag="personal">
+          <h3>Jeepney route finder</h3>
+          <p>Pick two points in Quezon City and see which jeepney routes connect them and what the fare is.</p>
+          <div class="meta"><span>2023</span><span>Personal</span><span>JavaScript, SVG</span></div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div>
+          <h3>Languages</h3>
+          <ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>TypeScript</li></ul>
+        </div>
+        <div>
+          <h3>Practice</h3>
+          <ul><li>Accessibility (WCAG 2.2)</li><li>Performance budgets</li><li>Responsive layout</li><li>Offline-first forms</li></ul>
+        </div>
+        <div>
+          <h3>Tools</h3>
+          <ul><li>Git</li><li>Figma</li><li>Lighthouse</li><li>Eleventy</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="prose">Email is the best way to reach me. I reply within two working days.</p>
+      <div class="contact-row">
+        <span class="email" id="email">lia@example.com</span>
+        <button class="btn" id="copy-email" type="button">Copy email</button>
+      </div>
+      <div class="links">
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>
+      </div>
+    </section>
+
+    <footer>© <span id="year">2026</span> Lia Navarro</footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  /* ----- Theme toggle ----- */
+  var themeBtn = document.getElementById('theme-toggle');
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function currentTheme() {
+    return root.getAttribute('data-theme') || (darkQuery.matches ? 'dark' : 'light');
+  }
+  function paintThemeButton() {
+    themeBtn.textContent = currentTheme() === 'dark' ? 'Light mode' : 'Dark mode';
+  }
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  themeBtn.addEventListener('click', function () {
+    var next = currentTheme() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    paintThemeButton();
+  });
+  if (darkQuery.addEventListener) darkQuery.addEventListener('change', paintThemeButton);
+  paintThemeButton();
+
+  /* ----- Live local time in Manila ----- */
+  var timeEl = document.getElementById('local-time');
+  function paintTime() {
+    try {
+      var t = new Intl.DateTimeFormat('en-PH', {
+        hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'Asia/Manila'
+      }).format(new Date());
+      timeEl.textContent = t + ' (UTC+8)';
+    } catch (e) {
+      timeEl.textContent = 'UTC+8';
+    }
+  }
+  paintTime();
+  setInterval(paintTime, 15000);
+
+  /* ----- Project filter ----- */
+  var chips = document.querySelectorAll('.chip');
+  var projects = document.querySelectorAll('.project');
+  var countEl = document.getElementById('project-count');
+
+  function applyFilter(filter) {
+    var shown = 0;
+    projects.forEach(function (p) {
+      var match = filter === 'all' || p.getAttribute('data-tag') === filter;
+      p.hidden = !match;
+      if (match) shown++;
+    });
+    chips.forEach(function (c) {
+      c.setAttribute('aria-pressed', String(c.getAttribute('data-filter') === filter));
+    });
+    countEl.textContent = shown + ' of ' + projects.length + ' shown';
+  }
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () { applyFilter(c.getAttribute('data-filter')); });
+  });
+  applyFilter('all');
+
+  /* ----- Copy email ----- */
+  var copyBtn = document.getElementById('copy-email');
+  var emailEl = document.getElementById('email');
+  var copyTimer;
+
+  function selectEmail() {
+    var range = document.createRange();
+    range.selectNodeContents(emailEl);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+  function flash(label) {
+    copyBtn.textContent = label;
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(function () { copyBtn.textContent = 'Copy email'; }, 2200);
+  }
+  copyBtn.addEventListener('click', function () {
+    var text = emailEl.textContent.trim();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        function () { flash('Copied'); },
+        function () { selectEmail(); flash('Selected. Press Ctrl+C'); }
+      );
+    } else {
+      selectEmail();
+      flash('Selected. Press Ctrl+C');
+    }
+  });
+
+  /* ----- Highlight the section being read ----- */
+  var navLinks = document.querySelectorAll('.nav a');
+  function setActive(id) {
+    navLinks.forEach(function (a) {
+      if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  setActive('about');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: '-25% 0px -65% 0px' });
+    document.querySelectorAll('main section[id]').forEach(function (s) { observer.observe(s); });
+  }
+
+  /* ----- Footer year ----- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+
+</body></html>
